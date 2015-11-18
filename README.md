@@ -37,21 +37,21 @@ Automatizar la búsqueda de información en la biblioteca sobre libros y alumnos
 
 Objetivos Específicos
 
-Generación de reporte de libros perdidos durante el período escolar.
-Generación de reporte de gastos hechos en libros durante el período escolar.
-Generación de reporte de cantidad de rentas de libros por mes durante el período escolar.
-Generación de reporte de total de adeudos por alumnos e ingresos por adeudo.
-Generación de reporte de libros con baja rentabilidad.
-Generación de reporte de control de renta de libros personales (con fecha próxima de vencimiento).
-Generación de reporte facturable de multas pagadas personales durante el período actual.
-Generación de reporte de multas pendientes.
-Generación de reporte total de multas pagadas diarias.
-Generación de reporte total de rentas diarias.
-Capacidad de visualizar lista de sugerencias de alumnos.
-Capacidad de realizar búsquedas  de libros con palabras claves, título,autor, género.
-Capacidad de revisar expedientes bibliotecarios de alumnos y obtención pagos pendientes.
-Capacidad de obtener lista de libros en demanda. 
-Capacidad de revisar disponibilidad de libros.
-Capacidad de revisar lista de espera en libros.
-Capacidad de revisar historial bibliotecario personal.
+1. Generación de reporte de libros perdidos durante el período escolar.
+2. Generación de reporte de gastos hechos en libros durante el período escolar.
+3. Generación de reporte de cantidad de rentas de libros por mes durante el período escolar.
+4. Generación de reporte de total de adeudos por alumnos e ingresos por adeudo.
+5. Generación de reporte de libros con baja rentabilidad.
+6. Generación de reporte de control de renta de libros personales (con fecha próxima de vencimiento).
+7. Generación de reporte facturable de multas pagadas personales durante el período actual.
+8. Generación de reporte de multas pendientes.
+9. Generación de reporte total de multas pagadas diarias.
+10. Generación de reporte total de rentas diarias.
+11. Capacidad de visualizar lista de sugerencias de alumnos.
+12. Capacidad de realizar búsquedas  de libros con palabras claves, título,autor, género.
+13. Capacidad de revisar expedientes bibliotecarios de alumnos y obtención pagos pendientes.
+14. Capacidad de obtener lista de libros en demanda. 
+15. Capacidad de revisar disponibilidad de libros.
+16. Capacidad de revisar lista de espera en libros.
+17. Capacidad de revisar historial bibliotecario personal.
 

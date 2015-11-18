@@ -204,39 +204,15 @@ public class Renta implements Serializable{
       return multa; 
     }
     
-    /*
-    
     public int calcularTiempo(){
-        Calendar calcular=Calendar.getInstance();
-    	
-    	//////////// Calculos de dias para cada una de las categorias ////////////
-        int calcdias;
-        if (calcular.get(Calendar.DATE)-frenta.getDia()<0)
-                calcdias = frenta.diasMes(frenta.getMes())-frenta.getDia()+calcular.get(Calendar.DATE);
-        else
-            calcdias = calcular.get(Calendar.DATE)-frenta.getDia();
-        int calcmeses;
-        if (calcular.get(Calendar.MONTH)-frenta.getMes()<0)
-                calcmeses = frenta.diasMes(frenta.getMes())-frenta.getDia()+calcular.get(Calendar.DATE);
-        else{
-            for (int i = 0; i<calcular.get(Calendar.MONTH)-frenta.getMes(); i++){
-                calcmeses += frenta.diasMes(frenta.getMes()+i);
-                
-                
-            }
-        }
-            calcmeses = calcular.get(Calendar.MONTH)-frenta.getMes();
-	    
-	    int calcano = (calcular.get(Calendar.YEAR)-frenta.getAno())*365;
-	 
-	    if(calcmeses < 0 || (calcmeses==0 && calcdias < 0)) { 
-	 
-	        calcano--;
-	    }
-	    return calcano;
+        Fecha hoy = new Fecha(0,0,0);
+        Hora ahora = new Hora(99,99,99);
+        int calcdias = hoy.calcDias() - frenta.calcDias();
+        if(ahora.calcSegundos()>hrenta.calcSegundos())
+            calcdias++;
+        return calcdias;
     }
     
-    */
     
     public String toString() {
         return "Renta{" + "alumno=" + alumno + ", frenta=" + frenta + ", hrenta=" + hrenta + ", fvencimiento=" + fvencimiento + ", hvencimiento=" + hvencimiento + ", fdevolucion=" + fdevolucion + ", hdevolucion=" + hdevolucion + ", multa=" + multa + '}';

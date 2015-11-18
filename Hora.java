@@ -105,6 +105,10 @@ public class Hora implements Serializable{
        }
        return nvoValor;
    }
+   
+   public int calcSegundos(){
+       return segundo + minuto*60 + hora*3600;
+   }
     
     public String toString(){
         return "H:M:S "+hora+":"+minuto+":"+segundo;

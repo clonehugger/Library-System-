@@ -1,4 +1,3 @@
-import java.io.Serializable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,44 +9,42 @@ import java.io.Serializable;
  * @author clonehugger
  */
 import java.awt.*;
+import java.io.Serializable;
 import javax.swing.*;
 
-public class Libro extends JFrame implements Serializable{
+public class Libro extends JFrame implements Serializable {
+
     protected String id;
     private String titulo;
-    private String nombre;
     private String autor;
     private String genero;
     private String descripcion;
     private ImageIcon imagen;
     private JLabel tituloImg;
     private String costo;
-    private int pedidos;
     private int existencia;
     private int renta;
     private int perdidos;
     private Renta[] rentas;
 
-    public Libro(String id, String titulo, String nombre, String autor, String genero, String descripcion, ImageIcon imagen, JLabel tituloImg, String costo, int pedidos, int existencia, int renta, int perdidos, Renta[] rentas) throws HeadlessException {
-        setLayout( new FlowLayout());
-        imagen = new ImageIcon(getClass().getResource(id+".jpg"));
-        tituloImg=new JLabel(imagen);
+    public Libro(String id, String titulo, String autor, String genero, String descripcion, String costo, int existencia, int perdidos, Renta[] rentas) throws HeadlessException {
+        setLayout(new FlowLayout());
+        imagen = new ImageIcon(getClass().getResource(id + ".jpg"));
+        tituloImg = new JLabel(imagen);
         add(tituloImg);
         setId(id);
         setTitulo(titulo);
-        setNombre(nombre);
         setAutor(autor);
         setGenero(genero);
         setDescripcion(descripcion);
         setCosto(costo);
-        setPedidos(pedidos);
         setExistencia(existencia);
-        setRenta(renta);
         setPerdidos(perdidos);
         setRentas(rentas);
-        
+        setRenta();
+
     }
-    
+
     public String getId() {
         return id;
     }
@@ -62,14 +59,6 @@ public class Libro extends JFrame implements Serializable{
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getAutor() {
@@ -120,14 +109,6 @@ public class Libro extends JFrame implements Serializable{
         this.costo = costo;
     }
 
-    public int getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(int pedidos) {
-        this.pedidos = pedidos;
-    }
-
     public int getExistencia() {
         return existencia;
     }
@@ -140,8 +121,8 @@ public class Libro extends JFrame implements Serializable{
         return renta;
     }
 
-    public void setRenta(int renta) {
-        this.renta = renta;
+    public void setRenta() {
+        this.renta = rentasActuales();
     }
 
     public int getPerdidos() {
@@ -149,7 +130,7 @@ public class Libro extends JFrame implements Serializable{
     }
 
     public void setPerdidos(int perdidos) {
-        this.perdidos = perdidos;
+        this.perdidos = perdidos();
     }
 
     public Renta[] getRentas() {
@@ -162,11 +143,76 @@ public class Libro extends JFrame implements Serializable{
 
     @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", autor=" + autor + ", genero=" + genero + ", descripcion=" + descripcion + ", imagen=" + imagen + ", tituloImg=" + tituloImg + ", costo=" + costo + ", pedidos=" + pedidos + ", existencia=" + existencia + ", renta=" + renta + ", perdidos=" + perdidos + ", rentas=" + rentas + '}';
+        return "Libro{" + "id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", genero=" + genero + ", descripcion=" + descripcion + ", imagen=" + imagen + ", tituloImg=" + tituloImg + ", costo=" + costo + ", existencia=" + existencia + ", renta=" + renta + ", perdidos=" + perdidos + ", rentas=" + rentas + '}';
     }
 
+    public byte popularidad() {
+        byte cantidadDeRentas = (byte) rentas.length;
+        return cantidadDeRentas;
+    }
+
+    public byte cantidadDisponible() {
+
+        byte cant = (byte) (existencia - renta - perdidos);
+        return cant;
+
+    }
+
+    public int validarCosto() {
+        int respuesta = 0;
+        if (costo.equals("Donacion")) {
+        } else {
+            try {
+                respuesta = Integer.parseInt(costo);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al hacer parse del costo");
+            }
+        }
+        return respuesta;
+
+    }
+
+    public int rentasActuales() {
+        int cont = 0;
+        for (Renta temp : rentas) {
+            if (temp.getFdevolucion().equals(new Fecha(0, 0, 0))) {
+                cont++;
+            }
+        }
+        return cont;
+    }
     
-    
-    
-    
+    public int perdidos(){
+        int cont = 0;
+        for(Renta temp : rentas){
+            if(temp.getRegresado()) {
+            } else {
+                    cont++;
+            }
+        }
+        return cont;
+    }
+
+    public double ganancias() {
+        int perdidasDeLibros = perdidos * validarCosto();
+        double gananciaDeMultas = 0.0;
+        try {
+            for (Renta temp : rentas) {
+                if (temp.getMulta().equals("NO HAY MULTA")) {
+                } else {
+                    try {
+                        gananciaDeMultas += Double.parseDouble(temp.getMulta().substring(1)) - perdidasDeLibros;
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error al hacer el parse de multa");
+                    }
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Se excedió el límite del arreglo: rentas");
+        }
+
+        return gananciaDeMultas;
+    }
+
 }

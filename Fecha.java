@@ -185,7 +185,7 @@ public class Fecha implements Serializable{
    
    public int calcDias(){
        int dias = 0;
-       for(int i = 0; i< mes; i++){
+       for(int i = 1; i< mes; i++){
            dias += diasMes(mes-i);
        }
        dias += dia;
@@ -221,3 +221,4 @@ public class Fecha implements Serializable{
    
    
 }
+

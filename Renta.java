@@ -1,5 +1,3 @@
-
-
 import java.io.Serializable;
 import java.util.StringTokenizer;
 
@@ -25,13 +23,15 @@ public class Renta implements Serializable {
     private String multa;
     private String pago;
     private String saldo;
+    private boolean regresado;
 
-    public Renta(Alumno alumno, Fecha frenta, Hora hrenta, Fecha fdevolucion, Hora hdevolucion, String pago) {
+    public Renta(Alumno alumno, Fecha frenta, Hora hrenta, boolean regresado, Fecha fdevolucion, Hora hdevolucion, String pago) {
         setAlumno(alumno);
         setFrenta(frenta);
         setHrenta(hrenta);
         setFvencimiento();
         setHvencimiento(hrenta);
+        setRegresado(regresado);
         setFdevolucion(fdevolucion);
         setHdevolucion(hdevolucion);
         setMulta();
@@ -120,6 +120,13 @@ public class Renta implements Serializable {
     public void setSaldo() {
         saldo = calcularSaldo();
     }
+    public void setRegresado(boolean regresado) {
+        this.regresado = regresado;
+    }
+    
+    public boolean getRegresado( ) {
+        return regresado;
+    }
 
     public Fecha calcularFVencimiento() { //obtiene la fecha de vencimiento
         int diaV = frenta.getDia() + 7;
@@ -201,6 +208,7 @@ public class Renta implements Serializable {
     public String calcularMulta() { //en String para facilitar el despliegue del mensaje
         String multa = "0.0";
         double totalMulta = 0.0;
+        if(regresado){
         try {
             totalMulta = Double.parseDouble(multa);
         } catch (NumberFormatException e) {
@@ -219,6 +227,10 @@ public class Renta implements Serializable {
         } catch (NumberFormatException e) {
             System.out.println("El dato no es parseable.");
         }
+        }
+        else{
+            multa = "$500.00";
+        }
         return multa;
     }
 
@@ -236,4 +248,8 @@ public class Renta implements Serializable {
         return "Renta{" + "alumno=" + alumno + ", frenta=" + frenta + ", hrenta=" + hrenta + ", fvencimiento=" + fvencimiento + ", hvencimiento=" + hvencimiento + ", fdevolucion=" + fdevolucion + ", hdevolucion=" + hdevolucion + ", multa=" + multa + '}';
     }
 
+    
+    
+
 }
+

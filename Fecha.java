@@ -218,6 +218,14 @@ public class Fecha implements Serializable{
        }
        return nvoValor;
    }
+   public Fecha hacerFecha(String fechaCompleta){
+       
+            String partesFecha[] = fechaCompleta.split(" ");
+            int dia = (int)Integer.parseInt(partesFecha[0]);
+            int mes = (int)Integer.parseInt(partesFecha[1]);
+            int ano = (int)Integer.parseInt(partesFecha[2]);
+            return new Fecha (dia, mes, ano);
+   }
    
    
 }

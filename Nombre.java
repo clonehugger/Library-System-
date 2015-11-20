@@ -9,50 +9,55 @@ import java.io.Serializable;
  *
  * @author clonehugger
  */
-public class Nombre implements Serializable{
-    private String nombre;
-   private String apellidoP;
-   private String apellidoM;
-   
-   public Nombre(String nombre, String apellidoP, String apellidoM){
-   
+public class Persona implements Serializable{
+    protected Nombre nombre;
+
+    private String telefono;
+
+    private String email;
+    
+    public Persona(Nombre nombre, String telefono, String email ) {
+      
       setNombre(nombre);
-      setApellidoP(apellidoP);
-      setApellidoM(apellidoM);
-   }
-   
-   public void setNombre(String nombre){
-   
-      this.nombre=nombre;
-   }
-   
-   public String getNombre(){
-      
-      return nombre;
-   }
-   
-   public void setApellidoP(String apellidoP){
-   
-      this.apellidoP=apellidoP;
-   }
-   
-   public String getApellidoP(){
-      
-      return apellidoP;
-   }
-   
-   public void setApellidoM(String apellidoM){
-   
-      this.apellidoM=apellidoM;
-   }
-   
-   public String getApellidoM(){
-      
-      return apellidoM;
-   }   
-  
-   
-   public String toString(){
-      return nombre+" "+apellidoP+" "+apellidoM;
-   } 
+      setTelefono(telefono);
+      setEmail(email);
+    
+    }
+    
+    public Persona() {
+    
+    }
+
+    public Nombre getNombre() {
+        return nombre;
+    }
+
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setNombre(Nombre nombre) {
+        this.nombre = nombre;
+    }
+
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
+    public String toString() {
+        
+        return "\n Nombre:\t" + nombre + " \n Teléfono:\t" + telefono + "\n Email:\t\t" + email ;
+    }
+
 }

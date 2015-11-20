@@ -1,3 +1,4 @@
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -113,7 +114,15 @@ public class Hora implements Serializable{
     public String toString(){
         return "H:M:S "+hora+":"+minuto+":"+segundo;
     }
+    
+    public Hora hacerHora(String horaCompleta){
+       
+            String partesHora[] = horaCompleta.split(" ");
+            int hora = (int)Integer.parseInt(partesHora[0]);
+            int minuto = (int)Integer.parseInt(partesHora[1]);
+            int segundo = (int)Integer.parseInt(partesHora[2]);
+            return new Hora (hora, minuto, segundo);
+   }
 
     
 }
-

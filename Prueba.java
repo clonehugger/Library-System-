@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,19 +26,22 @@ public class Prueba {
         Hora hMal = new Hora(99,99,99);
         System.out.println(hMal+"\n"+hMal.calcSegundos());
         Nombre nom = new Nombre("Andrea","Puente","Sanchez");
-        Alumno alumBien = new Alumno(nom, "81154329402", "andrea@email.com", "andrea", "12345","317000");
-        System.out.println(alumBien.validarUsuario());
+        Alumno alumBien = new Alumno(nom, "81154329402", "andrea@email.com", "elo514", "1483","1483");
+        System.out.println(alumBien.validarUsuario()+" Matricula "+alumBien.getMatricula());
         Nombre nom1 = new Nombre("Andrea","Puente","Sanchez");
-        Bibliotecario bibMal = new Bibliotecario(nom1, "81154329402", "andrea@email.com", "andrea", "12");
-        System.out.println(bibMal.validarUsuario());
+        Bibliotecario bibBien = new Bibliotecario(nom1, "81154329402", "andrea@email.com", "joh669", "15245");
+        System.out.println(bibBien.validarUsuario());
         Nombre nom2 = new Nombre("Andrea","Puente","Sanchez");
-        Admin adminMal = new Admin(nom2, "81154329402", "andrea@email.com", "andres", "12");
+        Admin adminMal = new Admin(nom2, "81154329402", "andrea@email.com", "admin254", "58778");
         System.out.println(adminMal.validarUsuario());
         Usuario uBien = alumBien;
-        Usuario uMal1 = bibMal;
+        Usuario uMal1 = bibBien;
         Usuario uMal2 = adminMal;
         Usuario u = RegresarAlumno.regresarAlumno("14846"); 
         System.out.println(u);
+        Renta r[] = RegresarRenta.regresarRenta("51483");
+        System.out.println(Arrays.toString(r));
+        
         
         
         

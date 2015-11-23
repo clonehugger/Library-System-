@@ -22,7 +22,7 @@ public class RegresarAlumno {
         Alumno a = null;
         ObjectInputStream ois = null;
         try{
-            File f = new File("/Users/clonehugger/Desktop/usuarios.dat");
+            File f = new File("/users/clonehugger/desktop/libreria/usuarios.dat");
             FileInputStream fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
             boolean match = false;
@@ -50,5 +50,38 @@ public class RegresarAlumno {
             
         return a;
     }
+    public  static Alumno regresarAlumno (String usuario, String password) throws ClassNotFoundException, IOException {
+        Alumno a = null;
+        ObjectInputStream ois = null;
+        try{
+            File f = new File("/users/clonehugger/desktop/libreria/usuarios.dat");
+            FileInputStream fis = new FileInputStream(f);
+            ois = new ObjectInputStream(fis);
+            boolean match = false;
+            for(int i = 0; i<40; i++){
+                Alumno temp = (Alumno) ois.readObject();
+                if(temp.getUsername().equals(usuario))
+                    a = temp;
+                
+            }
+            try{
+                a.getUsername();
+            }
+            catch(NullPointerException e){
+                System.out.println("Usuario no encontrado");
+                a = null;
+            }
+           
+        }
+        catch(IOException io){
+            System.out.println("Error al obtener objeto.");
+        }
+        finally{
+            ois.close();
+        }
+            
+        return a;
+    }
     
 }
+

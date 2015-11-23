@@ -110,7 +110,7 @@ public class Renta implements Serializable {
     }
 
     public void setPago(String pago) {
-        this.pago = totalPago();
+        this.pago = totalPago(pago);
     }
 
     public String getSaldo() {
@@ -130,7 +130,7 @@ public class Renta implements Serializable {
 
     public Fecha calcularFVencimiento() { //obtiene la fecha de vencimiento
         int diaV = frenta.getDia() + 7;
-        int mesV = frenta.diasMes();
+        int mesV = frenta.getMes();
         int anoV = frenta.getAno();
         try {
             if ((frenta.getDia() + 7) > frenta.diasMes()) {
@@ -155,7 +155,7 @@ public class Renta implements Serializable {
 
     }
 
-    public String totalPago() { //en String para facilitar el despliegue del mensaje
+    public String totalPago(String pago) { //en String para facilitar el despliegue del mensaje
         String total = "N/A";
         double totalPago;
         if (pago.equals("0")) {
@@ -164,7 +164,6 @@ public class Renta implements Serializable {
             try {
                 StringTokenizer st = new StringTokenizer(pago, ",");
                 while (st.hasMoreTokens()) {
-                    System.out.println(st.nextToken());
                     int temp = (int) Integer.parseInt(st.nextToken());
                     totalPago += temp;
 
@@ -252,5 +251,3 @@ public class Renta implements Serializable {
     
 
 }
-
-

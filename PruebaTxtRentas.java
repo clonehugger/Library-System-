@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +13,6 @@ import java.io.PrintStream;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author clonehugger
@@ -23,13 +23,11 @@ public class PruebaTxtRentas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File f = null;
-        FileInputStream f1 = null;
-        InputStreamReader f2 = null;
+        File f;
+        FileInputStream f1;
+        InputStreamReader f2;
         BufferedReader f3 = null;
-        ObjectOutputStream o = null;
         PrintStream pr = null;
-        Renta renta = null;
         Alumno alumno = null;
         Fecha frenta = null;
         Hora hrenta = null;
@@ -39,7 +37,7 @@ public class PruebaTxtRentas {
         String pago = null;
 
         try {
-            f = new File("/Users/clonehugger/Desktop/rentas.txt");
+            f = new File("/users/clonehugger/desktop/libreria/rentas.txt");
 
             f1 = new FileInputStream(f);
 
@@ -52,11 +50,11 @@ public class PruebaTxtRentas {
         try {
 
             alumno = RegresarAlumno.regresarAlumno(f3.readLine());
-            frenta = frenta.hacerFecha(f3.readLine());
-            hrenta = hrenta.hacerHora(f3.readLine());
+            frenta = new Fecha(0, 0, 0).hacerFecha(f3.readLine());
+            hrenta = new Hora(99, 99, 99).hacerHora(f3.readLine());
             regresado = (boolean) Boolean.parseBoolean(f3.readLine());
-            fdevolucion = fdevolucion.hacerFecha(f3.readLine());
-            hdevolucion = hdevolucion.hacerHora(f3.readLine());
+            fdevolucion = new Fecha(0, 0, 0).hacerFecha(f3.readLine());
+            hdevolucion = new Hora(99, 99, 99).hacerHora(f3.readLine());
             pago = f3.readLine();
         } catch (IOException e) {
             System.out.println("Error de lectura");
@@ -65,21 +63,29 @@ public class PruebaTxtRentas {
 
         }
         try {
-            o = new ObjectOutputStream(new FileOutputStream("/Users/clonehugger/Desktop/rentas.dat"));
+            //o = new ObjectOutputStream(new FileOutputStream("/Volumes/Untitled DVD/Libreria/rentas.dat"));
+
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("/users/clonehugger/desktop/libreria/rentas.dat"));
 
             while (alumno != null) {
 
-                renta = new Renta(alumno, frenta, hrenta, regresado, fdevolucion, hdevolucion, pago);
+                Renta renta = new Renta(alumno, frenta, hrenta, regresado, fdevolucion, hdevolucion, pago);
                 o.writeObject(renta);
                 alumno = RegresarAlumno.regresarAlumno(f3.readLine());
                 if (alumno != null) {
-                    frenta = frenta.hacerFecha(f3.readLine());
-                    hrenta = hrenta.hacerHora(f3.readLine());
+                    frenta = new Fecha(0, 0, 0).hacerFecha(f3.readLine());
+                    hrenta = new Hora(99, 99, 99).hacerHora(f3.readLine());
                     regresado = (boolean) Boolean.parseBoolean(f3.readLine());
-                    fdevolucion = fdevolucion.hacerFecha(f3.readLine());
-                    hdevolucion = hdevolucion.hacerHora(f3.readLine());
+                    fdevolucion = new Fecha(0, 0, 0).hacerFecha(f3.readLine());
+                    hdevolucion = new Hora(99, 99, 99).hacerHora(f3.readLine());
                     pago = f3.readLine();
                 }
+            }
+            try {
+                o.close();
+
+            } catch (IOException e) {
+                System.out.println("No se pudo cerrar el archivo");
             }
         } catch (IOException e) {
             System.out.println("Error al crear renta");
@@ -87,7 +93,8 @@ public class PruebaTxtRentas {
             System.out.println("No se encontró la clase");
 
         }
+
 // TODO code application logic here
     }
-    
+
 }

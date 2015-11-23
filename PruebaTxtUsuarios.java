@@ -47,7 +47,7 @@ public class PruebaTxtUsuarios {
 
         //CODIGO PARA USUARIOS
         try {
-            f = new File("/Users/clonehugger/Desktop/usuarios.txt");
+            f = new File("/users/clonehugger/desktop/libreria/usuarios.txt");
 
             f1 = new FileInputStream(f);
 
@@ -74,7 +74,7 @@ public class PruebaTxtUsuarios {
             System.out.println("Error de lectura");
         }
         try {
-            o = new ObjectOutputStream(new FileOutputStream("/Users/clonehugger/Desktop/usuarios.dat"));
+            o = new ObjectOutputStream(new FileOutputStream("/users/clonehugger/desktop/libreria/usuarios.dat"));
 
             while (nomCompleto.contains(" ")) {
 

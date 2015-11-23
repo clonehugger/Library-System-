@@ -27,7 +27,8 @@ public class Libro extends JFrame implements Serializable {
     private int perdidos;
     private Renta[] rentas;
 
-    public Libro(String id, String titulo, String autor, String genero, String descripcion, String costo, int existencia, int perdidos, Renta[] rentas) throws HeadlessException {
+    /*
+    public Libro(String id, String titulo, String autor, String genero, String descripcion, String costo, int existencia, Renta[] rentas) throws HeadlessException {
         setLayout(new FlowLayout());
         imagen = new ImageIcon(getClass().getResource(id + ".jpg"));
         tituloImg = new JLabel(imagen);
@@ -39,9 +40,23 @@ public class Libro extends JFrame implements Serializable {
         setDescripcion(descripcion);
         setCosto(costo);
         setExistencia(existencia);
-        setPerdidos(perdidos);
         setRentas(rentas);
         setRenta();
+        setPerdidos(perdidos());
+
+    }
+    */
+    public Libro(String id, String titulo, String autor, String genero, String descripcion, String costo, int existencia, Renta[] rentas) throws HeadlessException {
+        setId(id);
+        setTitulo(titulo);
+        setAutor(autor);
+        setGenero(genero);
+        setDescripcion(descripcion);
+        setCosto(costo);
+        setExistencia(existencia);
+        setRentas(rentas);
+        setRenta();
+        setPerdidos(perdidos());
 
     }
 
@@ -124,6 +139,10 @@ public class Libro extends JFrame implements Serializable {
     public void setRenta() {
         this.renta = rentasActuales();
     }
+    
+    public void setRenta(int renta) {
+        this.renta = renta;
+    }
 
     public int getPerdidos() {
         return perdidos;
@@ -143,7 +162,7 @@ public class Libro extends JFrame implements Serializable {
 
     @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", genero=" + genero + ", descripcion=" + descripcion + ", imagen=" + imagen + ", tituloImg=" + tituloImg + ", costo=" + costo + ", existencia=" + existencia + ", renta=" + renta + ", perdidos=" + perdidos + ", rentas=" + rentas + '}';
+        return "Libro{" + "id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", genero=" + genero + ", descripcion=" ;
     }
 
     public byte popularidad() {
@@ -152,8 +171,15 @@ public class Libro extends JFrame implements Serializable {
     }
 
     public byte cantidadDisponible() {
-
-        byte cant = (byte) (existencia - renta - perdidos);
+        
+        byte cant; 
+        try{
+           cant = (byte) (existencia - renta - perdidos); 
+        }
+        catch(NumberFormatException e){
+            cant = (byte) (existencia - renta);
+        }
+        
         return cant;
 
     }
